@@ -9,3 +9,7 @@ body{
 .full-width {
     width: 100%;
 }
+
+.sw-90-width {
+    width: 90%
+}
