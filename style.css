@@ -1,11 +1,15 @@
 body {
     padding-top: 70px;
+    padding-bottom: 70px;
 }
 
 .color-white {
     color: white;
 }
 
+.color-black {
+    color: black;
+}
 .full-width {
     width: 100%;
 }
