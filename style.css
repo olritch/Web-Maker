@@ -10,6 +10,7 @@ body {
 .color-black {
     color: black;
 }
+
 .full-width {
     width: 100%;
 }
@@ -33,4 +34,14 @@ a:hover {
 .nav-height {
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.absolute-right {
+    position: absolute;
+    right: 15px;
+    z-index: 2;
+}
+
+.same-line-h5 {
+    display:inline;
 }
