@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Widget Chooser</title>
+    <title>Widget Image</title>
     <!-- bootstrap -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
      crossorigin="anonymous">
@@ -18,24 +18,31 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar-light fixed-top bg-light">
+    <nav class="navbar navbar-light fixed-top bg-light">
             <a class="color-black" href="Widget-list.html"><i class="fas fa-chevron-left"></i></a>
-            <a class="navbar-brand padding-left" href="Widget-chooser.html">Choose Widget</a>
+            <a class="navbar-brand " href="Widget-heading.html">Edit Widget</a>
+            <a class="color-black" href="Widget-list.html"><i class="fas fa-check"></i></a>
         </nav>
-    <!-- List -->
+    <!-- Form -->
     <div class="container">
-        <ul class="list-group-flush">
-            <li class="list-group-item"><a href="Widget-heading.html">Heading</a></li>
-            <li class="list-group-item"><a href="#">Label</a></li>
-            <li class="list-group-item"><a href="#">Html</a></li>
-            <li class="list-group-item"><a href="#">Text Input</a></li>
-            <li class="list-group-item"><a href="#">Link</a></li>
-            <li class="list-group-item"><a href="">Button</a></li>
-            <li class="list-group-item"><a href="Widget-image.html">Image</a></li>
-            <li class="list-group-item"><a href="Widget-youtube.html">Youtube</a></li>
-            <li class="list-group-item"><a href="#">Data Table</a></li>
-            <li class="list-group-item"><a href="#">Repeater</a></li>
-        </ul>
+        <form>
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name"><b>Name</b></label>
+                <input type="text" id="name" class="form-control">
+            </div>
+            <!-- Url -->
+             <div class="form-group">
+                    <label for="url"><b>Url</b></label>
+                    <input type="text" id="url" class="form-control">
+                </div>
+            <!-- Width -->
+            <div class="form-group">
+                    <label for="width"><b>Width</b></label>
+                    <input type="text" id="width" class="form-control">
+                </div>
+            <a href="Widget-list.html" class="btn btn-danger btn-block">Delete</a>
+        </form>
     </div>
     <!-- Footer -->
     <footer class="navbar navbar-light fixed-bottom bg-light">
