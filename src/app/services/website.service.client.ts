@@ -44,14 +44,14 @@ export class WebsiteService {
     }
 
     updateWebsite(website) {
-        const oldWeb = this.findWebsiteById(website.id);
-        const index = this.websites.findIndex(oldWeb);
+        const oldWeb = this.findWebsiteById(website._id);
+        const index = this.websites.indexOf(oldWeb);
         this.websites[index] = website;
     }
 
     deleteWebsite(websiteId) {
       const website = this.findWebsiteById(websiteId);
-      const index = this .websites.indexOf(website);
-      this.websites.splice.(index, 1);
+      const index = this.websites.indexOf(website);
+      this.websites.splice(index, 1);
     }
 }
