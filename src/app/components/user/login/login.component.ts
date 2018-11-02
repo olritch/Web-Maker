@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
+  errorFlag: boolean;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit {
     );
 
     if(user) {
-      this.router.navigate(["user/" + user._id])
+      this.router.navigate(["user", user._id]); //"user/" + user._id
+    } else {
+        this.errorFlag = true;
     }
   }
 }
