@@ -45,3 +45,7 @@ a:hover {
 .same-line-h5 {
     display:inline;
 }
+
+.bg-transparent{
+    background: transparent;
+}

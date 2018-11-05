@@ -1,17 +1,21 @@
 <!--Navbar -->
 <nav class="navbar navbar-dark bg-primary fixed-top">
-  <a class="navbar-brand" routerLink="/user/:uid"><b>Profile</b></a>
-  <a class="color-white" routerLink="/user/:uid"><i class="fas fa-check"></i></a>
+  <a class="navbar-brand" routerLink="/user/{{uid}}"><b>Profile</b></a>
+  <button [disabled]="myForm.invalid" class="btn bg-transparent color-white" type="submit" form="myForm"><i class="fas fa-check"></i></button>
 </nav>
 <br>
 <!-- Form -->
 <div class="container">
-  <form>
+  <form #myForm="ngForm" (ngSubmit)="update()" id="myForm">
+      <div *ngIf="userError" class="alert alert-danger">This username is taken, please try another one.</div>
+      <div *ngIf="successFlag" class="alert alert-success">Update Successfully</div>
       <!-- Username -->
       <div class="form-group">
           <label for="username"><b>Username</b></label>
-          <input id="username" type="text" class="form-control" [(ngModel)]="user.username" name="username" placeholder="Enter Username...">
+          <input #userInput="ngModel" required id="username" type="text" class="form-control" [(ngModel)]="user.username" name="username" 
+                placeholder="Enter Username...">
       </div>
+      <div *ngIf="userInput.invalid" class="alert alert-warning">Username can't be empty</div>
       <!-- Email -->
       <div class="form-group">
           <label for="email" ><b>Email</b></label>
@@ -35,6 +39,6 @@
 <!--Footer -->
 <nav class="navbar navbar-dark bg-primary fixed-bottom">
   <div class="full-width">
-      <a class="color-white float-right" routerLink="/user/:uid"><i class="fas fa-user"></i></a>
+      <a class="color-white float-right" routerLink="/user/{{uid}} "><i class="fas fa-user"></i></a>
   </div>
 </nav>
