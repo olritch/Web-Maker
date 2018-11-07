@@ -1,107 +1,56 @@
  <!-- navbar -->
  <nav class="navbar navbar-light fixed-top bg-light">
-  <a class="color-black" routerLink="/user/:uid/website/:wid/page"><i class="fas fa-chevron-left"></i></a>
-  <a class="navbar-brand" routerLink="/user/:uid/website/:wid/page/:pid/widget">Widgets</a>
-  <a class="color-black" routerLink="/user/:uid/website/:wid/page/:pid/widget/new"><i class="fas fa-plus"></i></a>
+    <a class="color-black" routerLink="/user/{{uid}}/website/{{wid}}/page"><i class="fas fa-chevron-left"></i></a>
+    <a class="navbar-brand" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget">Widgets</a>
+    <a class="color-black" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new"><i class="fas fa-plus"></i></a>
 </nav>
 <!-- Main Content -->
 <div class="container-fluid">
- <!-- Heading Widget -->
- <div>
+ <!-- Widgets -->
+ <div *ngFor="let widget of widgets">
      <!-- Icons -->
      <div class="absolute-right">
-         <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid"><i class="fas fa-cog"></i></a>
-         <a routerLink="/user/:uid/website/:wid/page/:pid/widget"><i class="fas fa-bars"></i></a>
+         <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}"><i class="fas fa-cog"></i></a>
+         <a routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget"><i class="fas fa-bars"></i></a>
      </div>
      <!-- Content -->
-     <div>
-         <h1 class="same-line-h5">O.G. </h1><h4 class="same-line-h5">Ent.</h4> 
+     <div [ngSwitch]="widget.widgetType">
+         <div *ngSwitchCase="'HEADING'">
+            <div [ngSwitch]="widget.size">
+                <div *ngSwitchCase="1">
+                    <h1>{{widget.text</h1>
+                </div>
+                <div *ngSwitchCase="2">
+                    <h2>{{widget.text}}</h2>
+                </div>
+                <div *ngSwitchCase="3">
+                    <h3>{{widget.text}}</h3>
+                </div>
+                <div *ngSwitchCase="4">
+                    <h4>{{widget.text}}</h4>
+                </div>
+                <div *ngSwitchCase="5">
+                    <h5>{{widget.text}}</h5>
+                </div>
+                <div *ngSwitchCase="6">
+                    <h6>{{widget.text}}</h6>
+                </div>
+            </div>
+         </div>
+         <div *ngSwitchCase="'IMAGE'">
+            <img [src]="widget.url" [style.width]="widget.width" />
+        </div>
+        <div *ngSwitchCase="'YOUTUBE'">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe [src]="parseYoutubeSrc(widget.url)" [style.width]="widget.width" allowfullscreen></iframe>
+            </div>
+        </div>
      </div>
- </div>
- <!-- Heading Widget -->
- <div>
-      <!-- Icons -->
-      <div class="absolute-right">
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid"><i class="fas fa-cog"></i></a>
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget"><i class="fas fa-bars"></i></a>
-      </div>
-      <!-- Content -->
-      <div>  
-          <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque veniam dignissimos.</h3>
-      </div>
-  </div>
-  <!-- Image Widget -->
- <div>
-      <!-- Icons -->
-      <div class="absolute-right">
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid"><i class="fas fa-cog"></i></a>
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget"><i class="fas fa-bars"></i></a>
-      </div>
-      <!-- Content -->
-      <div>
-          <img class="img-fluid" src="https://lh3.googleusercontent.com/p/AF1QipMy4p_kqOFFuDrDuDFa46tPz-L16d2_69PqA3jI=s512-p-qv=piu4sk3rubupf1vg3itq6iqaql2h7lncq,m=9a74c21dbbfc972b763a65f09d73005e,x=,t=25-iv6240?key=YVBRMDJab0JiX1JFc1hMZDMxMWozSjlWV2R5VDRR"
-              alt="OG image">
-      </div>
-  </div>
-   <!-- Heading Widget -->
- <div>
-      <!-- Icons -->
-      <div class="absolute-right">
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid"><i class="fas fa-cog"></i></a>
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget"><i class="fas fa-bars"></i></a>
-      </div>
-      <!-- Content -->
-      <div>
-          <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-              Nisi fugiat <a href="http://www.google.com">eveniet magnam 
-                  eos ex</a> soluta, iusto excepturi quia facilis 
-              incidunt 
-              blanditiis. Perspiciatis distinctio commodi a nobis quam quia dignissimos quis.</h5>
-      </div>
-  </div>
-  <!-- Heading Widget -->
- <div>
-      <!-- Icons -->
-      <div class="absolute-right">
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid"><i class="fas fa-cog"></i></a>
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget"><i class="fas fa-bars"></i></a>
-      </div>
-      <!-- Content -->
-      <div>
-          <h3>Lorem ipsum dolor sit amet</h3>
-      </div>
-  </div>
-  <!-- Youtube Widget -->
- <div>
-      <!-- Icons -->
-      <div class="absolute-right">
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid"><i class="fas fa-cog"></i></a>
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget"><i class="fas fa-bars"></i></a>
-      </div>
-      <!-- Content -->
-      <div class="embed-responsive embed-responsive-16by9">  
-          <video width="75%" controls><source src="../../../../assets/videoplayback.mp4" type="video/mp4">        
-          </video>
-      </div>
-  </div>
-  <!-- Heading Widget -->
- <div>
-      <!-- Icons -->
-      <div class="absolute-right">
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget/:wgid"><i class="fas fa-cog"></i></a>
-          <a routerLink="/user/:uid/website/:wid/page/:pid/widget"><i class="fas fa-bars"></i></a>
-      </div>
-      <!-- Content -->
-      <div>
-          <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptatum possimus? Accusamus quibusdam atque laboriosam vero similique id maxime assumenda in odio ratione, qui architecto, pageat pariatur animi, eveniet corrupti?</h5>
-      </div>
   </div>
 </div>
-
-
 <!-- Footer -->
 <footer class="navbar navbar-light fixed-bottom bg-light">
   <div class="full-width">
-      <a class="color-black float-right" routerLink="/user/:uid"><i class="fas fa-user"></i></a>       
+      <a class="color-black float-right" routerLink="/user/{{uid}}"><i class="fas fa-user"></i></a>       
   </div>
 </footer>
