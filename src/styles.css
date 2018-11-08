@@ -1,3 +1,4 @@
+/*  You can add global styles to this file, and also import other styles files */
 body {
     padding-top: 70px;
     padding-bottom: 70px;
@@ -48,4 +49,8 @@ a:hover {
 
 .bg-transparent{
     background: transparent;
+}
+
+.pointer {
+    cursor: pointer;
 }

@@ -44,7 +44,7 @@ export class WidgetService {
   ];
 
     createWidget(widget) {
-        widget._id = Math.random.toString();
+        widget._id = Math.random().toString();
         this.widgets.push(widget);
         return widget;
     } 
@@ -59,7 +59,7 @@ export class WidgetService {
     }
     findWidgetById(widgetId) {
         for (let i = 0; i < this.widgets.length; i++) {
-        if ((widgetId = this.widgets[i]._id)) {
+        if ((widgetId === this.widgets[i]._id)) {
             return this.widgets[i];
         }
         }
