@@ -3,10 +3,10 @@ module.exports = function(app) {
         app.post("/api/user", createUser);
         // get User By Id
         app.get("/api/user/:uid", findUserById);
-
         // Get User
         app.get("/api/user", findUser);
-
+        // Update User
+        app.put("/api/user", updateUser);
 
     users = [
         {
@@ -51,20 +51,51 @@ module.exports = function(app) {
         }
 
         function findUserById(req, res) {
-            var userId = req.params["uid"];
-            for (let x = 0; x < users.length; x++) {
-                if (users[x]._id === userId) {  
-                  res.json(users[x]); 
-            }
-        }
+            const userId = req.params["uid"];
+            let user = selectUserById(userId);
+            res.json(user);
     }
 
     function findUser(req, res) {
         const username = req.query["username"];
         const password = req.query["password"];
 
-        isFinite(username && password) {
-             let user
+        if(username && password) {
+             let user;
+             for(let i=0; i<users.length; i++) {
+                if (users[i].username === username && users[i].password === password) {
+                       user = users[i]; 
+                    }   
+             }
+             res.json(user);
+             return;
         }
+
+        if (username) {
+            let user;
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].username === username) {  
+                  user = users[i]; 
+                }
+            } 
+            res.json(user);
+            return;
+        }
+    }
+
+    function selectUserById(uid) {
+        for (let x = 0; x < users.length; x++) {
+            if (users[x]._id === uid) {  
+            return users[x]; 
+            }
+        }
+    }
+
+    function updateUser(req,res) {
+        const user = req.body;
+        const oldUser = selectUserById(user._id);
+        const index = users.indexOf(oldUser);
+        this.users[index] = user;
+        res.json(user);
     }
 };
