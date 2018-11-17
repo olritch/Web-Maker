@@ -59,7 +59,6 @@ module.exports = function(app) {
     function findUser(req, res) {
         const username = req.query["username"];
         const password = req.query["password"];
-
         if(username && password) {
              let user;
              for(let i=0; i<users.length; i++) {
