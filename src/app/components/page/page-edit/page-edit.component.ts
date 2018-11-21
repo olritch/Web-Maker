@@ -24,7 +24,9 @@ page: Page;
       this.uid = params["uid"];
       this.wid = params["wid"];
       this.pid = params["pid"];
-      this.page = this.pageService.findPageById(this.pid);
+     this.pageService.findPageById(this.pid).subscribe((page: Page) => {
+          this.page = page;
+        });
     });
   }
 

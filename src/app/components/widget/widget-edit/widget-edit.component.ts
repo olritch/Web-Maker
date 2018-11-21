@@ -19,7 +19,9 @@ widget: Widget;
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.wgid = params["wgid"];
-      this.widget = this.widgetService.findWidgetById(this.wgid);
+      this.widgetService.findWidgetById(this.wgid).subscribe(
+        (widget: Widget) => {
+          this.widget = widget;
     })
-  }
-}
+  })
+}}

@@ -1,9 +1,9 @@
 module.exports = function(app) {
 //  Create Page
 app.post("/api/page", createPage);
-// Find Page For Website
+// Find All Pages For Website
 app.get("/api/website/:wid/page", findAllPagesForWebsite);
-// Find Page For Page
+// Find Page By Id
 app.get("/api/page/:pid", findPageById);
 // Update Page
 app.put("/api/page", updatePage);

@@ -34,21 +34,10 @@ pid: string;
       pageId: this.pid
     };
 
-    this.widgetService.createWidget(widget);
-
-    const wgid: string = this.widgetService.widgets[
-      this.widgetService.widgets.length - 1
-    ]._id;
-
-    this.router.navigate([
-      "user", 
-      this.uid, 
-      "website", 
-      this.wid, 
-      "page", 
-      this.pid, 
-      "widget", 
-      wgid
-    ]);
+    this.widgetService.createWidget(widget).subscribe(
+      (widget: Widget) => {
+        const wgid = widget._id;
+        this.router.navigate(["user", this.uid, "website", this.wid, "page", this.pid, "widget", wgid]);
+  })
   }
 }
