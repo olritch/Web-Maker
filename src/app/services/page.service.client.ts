@@ -3,6 +3,7 @@ import { Page } from '../models/page.model.client';
 import { Http, Response } from "@angular/http";
 import { map } from "rxjs/operators";
 import { environment } from "../../environments/environment"
+
 // injecting service into module
 @Injectable()
 export class PageService {
@@ -19,8 +20,8 @@ export class PageService {
     ); 
   }
 
-  findAllPagesForWebsite(websiteId: string) {
-    const url = this.baseUrl + "/api/website/:wid/page";
+  findPagesByWebsiteId(websiteId: string) {
+    const url = this.baseUrl + `/api/website/${websiteId}/page`;
     return this.http.get(url).pipe(
       map((res:Response) => {
         return res.json();
@@ -29,7 +30,7 @@ export class PageService {
   }
 
   findPageById(pageId: string) {
-    const url = this.baseUrl + "/api/page/:pid";
+    const url = this.baseUrl + "/api/page/" + pageId;
     return this.http.get(url).pipe(
       map((res:Response) => {
         return res.json();
@@ -39,7 +40,7 @@ export class PageService {
 
   updatePage(page: Page) {
     const url = this.baseUrl + "/api/page";
-    return this.http.post(url, page).pipe(
+    return this.http.put(url, page).pipe(
       map((res:Response) => {
         return res.json();
       })
@@ -47,8 +48,8 @@ export class PageService {
   }
 
   deletePage(pageId: string) {
-    const url = this.baseUrl + "/api/page/:pid";
-    return this.http.get(url).pipe(
+    const url = this.baseUrl + "/api/page/" + pageId;
+    return this.http.delete(url).pipe(
       map((res:Response) => {
         return res.json();
       })

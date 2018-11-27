@@ -4,11 +4,11 @@ app.post("/api/widget", createWidget);
 // Find All Widget For Page
 app.get("/api/page/:pid/widget", findAllWidgetsForPage);
 // Find Widget By Id
-app.get("/api/widget/:wid", findWidgetById);
+app.get("/api/widget/:wgid", findWidgetById);
 // Update Widget
 app.put("/api/widget", updateWidget);
 // Delete Widget
-app.delete("/api/widget/:wid", deleteWidget);
+app.delete("/api/widget/:wgid", deleteWidget);
 
 widgets = [
     { 
@@ -50,50 +50,50 @@ widgets = [
   ];
 
 function createWidget(req, res){
+    let widget = req.body;
     widget._id = Math.random().toString();
         widgets.push(widget);
         res.json(widget);
  }
+
 function findAllWidgetsForPage(req, res) {
     let result = [];
+    const pid = req.params["pid"];
         for (let i = 0; i < widgets.length; i++) {
-            if (pageId === widgets[i].pageId) {
-                result.push(this.widgets[i]);
+            if (widgets[i].pageId === pid) {
+                result.push(widgets[i]);
             }
         }
-        res.json (result);
+        res.json(result);
 }
 
-function selectWidgetbyId(wid) {
-    for (let i = 0; i < websites.length; i++) {
-        if (page[i]._id === wid) { 
-          return page[i];
+function selectWidgetById(wgid) {
+    for (let i = 0; i < widgets.length; i++) {
+        if (widgets[i]._id === wgid) { 
+          return widgets[i];
         }
     }
 }
 
 function findWidgetById(req, res) {
-    for (let i = 0; i < widgets.length; i++) {
-        if ((widgetId === widgets[i]._id)) {
-            return widgets[i];
-        }
-        }
-}
+   const wgid = req.params["wgid"];
+   const widget = selectWidgetById(wgid);
+   res.json(widget);
+  }
+
 function updateWidget(req, res) {
     const widget =req.body;
-    const oldWidget = selectWidgetbyId(widget._id);
-    const oldWidget = this.findWidgetById(widget._id);
-    const index = this.widgets.indexOf(oldWidget);
+    const oldWidget = selectWidgetById(widget._id);
+    const index = widgets.indexOf(oldWidget);
     this.widgets[index] = widget;
     res.json(widget);
 }
 
 function deleteWidget(req, res) {
-    const widgetId = req.params["wid"];
-    const oldWidget = selectWidgetbyId(WidgetId);
-    const oldWidget = this.findWidgetById(widgetId);
-        const index = this.widgets.indexOf(oldWidget);
-        this.widgets.splice(index, 1);
-        res.json(widget);
+    const wgid = req.params["wgid"];
+    const Widget = selectWidgetById(wgid);
+    const index = widgets.indexOf(Widget);
+    widgets.splice(index, 1);
+    res.json(widget);
 }
 };

@@ -36,8 +36,14 @@ pid: string;
 
     this.widgetService.createWidget(widget).subscribe(
       (widget: Widget) => {
-        const wgid = widget._id;
-        this.router.navigate(["user", this.uid, "website", this.wid, "page", this.pid, "widget", wgid]);
+        this.router.navigate(["user", 
+        this.uid, 
+        "website", 
+        this.wid, 
+        "page", 
+        this.pid, 
+        "widget", 
+        widget._id]);
   })
   }
 }

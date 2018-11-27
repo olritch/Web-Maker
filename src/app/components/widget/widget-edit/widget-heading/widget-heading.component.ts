@@ -13,7 +13,11 @@ export class WidgetHeadingComponent implements OnInit {
   wid: string;
   pid: string;
   wgid: string;
-  widget: Widget;
+  widget: Widget = {
+    text: "",
+    widgetType: "HEADING",
+    pageId: ""
+  };
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -30,11 +34,11 @@ export class WidgetHeadingComponent implements OnInit {
         (widget: Widget) => {
           this.widget = widget;
     });
-    })
+    });
   }
 
   update(){
-    this.widgetService.updateWidget(this.widget);
+    this.widgetService.updateWidget(this.widget).subscribe((widget: Widget) => {
     this.router.navigate([
       "user",
       this.uid,
@@ -43,11 +47,12 @@ export class WidgetHeadingComponent implements OnInit {
       "page",
       this.pid,
       "widget"
-    ])
-  }
+    ]);
+  });
+}
 
   delete() {
-    this.widgetService.deleteWidget(this.wgid);
+    this.widgetService.deleteWidget(this.wgid).subscribe((widget: Widget[]) => {
     this.router.navigate([
       "user",
       this.uid,
@@ -56,6 +61,7 @@ export class WidgetHeadingComponent implements OnInit {
       "page",
       this.pid,
       "widget"
-    ])
-  }
+    ]);
+  });
+ }
 }

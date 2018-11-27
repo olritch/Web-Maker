@@ -17,35 +17,37 @@ pages = [
   ];
 
 function createPage(req, res){
-    let website = req.body;
+    let page = req.body;
     page._id = Math.random().toString();
     pages.push(page);
     res.json(page);
  }
+
 function findAllPagesForWebsite(req, res) {
     let result = [];
-    const websiteId = req.params["wid"]
+    const wid = req.params["wid"]
     for (let i = 0; i < pages.length; i++) {
-      if (pages[i].websiteId === websiteId) {
+      if (pages[i].websiteId === wid) {
         result.push(this.pages[i]);
       }
     }
     res.json(result);
 }
 
-function selectPagebyId(wid) {
-    for (let i = 0; i < websites.length; i++) {
-        if (page[i]._id === wid) { 
-          return page[i];
+function selectPagebyId(pid) {
+    for (let i = 0; i < pages.length; i++) {
+        if (pages[i]._id === pid) { 
+          return pages[i];
         }
     }
 }
 
 function findPageById(req, res) {
-    const wid = req.params["wid"];
-    const page = selectPagebyId(wid);
+    const pid = req.params["pid"];
+    const page = selectPagebyId(pid);
     res.json(page);
 }
+
 function updatePage(req, res) {
     const page =req.body;
     const oldPage = selectPagebyId(page._id);
@@ -53,10 +55,11 @@ function updatePage(req, res) {
     this.pages[index] = page;
     res.json(page);
 }
+
 function deletePage(req, res) {
-    const pageId = req.params["wid"];
-    const oldPage = selectPagebyId(pageId);
-    const index = pages.indexOf(oldPage);
+    const pageId = req.params["pid"];
+    const Page = selectPagebyId(pageId);
+    const index = websites.indexOf(Page);
     pages.splice(index, 1);
     res.json(pages);
 }
