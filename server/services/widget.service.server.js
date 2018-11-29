@@ -91,9 +91,9 @@ function updateWidget(req, res) {
 
 function deleteWidget(req, res) {
     const wgid = req.params["wgid"];
-    const Widget = selectWidgetById(wgid);
-    const index = widgets.indexOf(Widget);
+    const widget = selectWidgetById(wgid);
+    const index = widgets.indexOf(widget);
     widgets.splice(index, 1);
-    res.json(widget);
+    res.json(widgets);
 }
 };

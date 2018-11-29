@@ -58,7 +58,7 @@ function updatePage(req, res) {
 
 function deletePage(req, res) {
     const pageId = req.params["pid"];
-    const Page = selectPagebyId(pageId);
+    const Page = selectPageById(pageId);
     const index = websites.indexOf(Page);
     pages.splice(index, 1);
     res.json(pages);

@@ -15,6 +15,7 @@ widget: Widget = {
   widgetType: "", 
   pageId: "", 
   size: 0,
+  url: "",
   width: ""
 };
   constructor(
