@@ -29,7 +29,7 @@ export class UserService {
   }   
 
   findUserByUsername(username: string) {
-    const url = this.baseUrl + "/api/user/?username=" + username;
+    const url = this.baseUrl + "/api/user?username=" + username;
     return this.http.get(url).pipe(
       map((res:Response) => {
         return res.json();
@@ -39,7 +39,7 @@ export class UserService {
 
   findUserByCredentials(username: string, password: string) {
     const url = 
-    this.baseUrl + "/api/user/?username=" + username + "&password=" + password;
+    this.baseUrl + "/api/user?username=" + username + "&password=" + password;
     return this.http.get(url).pipe(
       map((res:Response) => {
         return res.json();

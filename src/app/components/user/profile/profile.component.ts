@@ -38,24 +38,25 @@ export class ProfileComponent implements OnInit {
 }
 
   update(){
-    if( this.user.username !== this.oldUsername){
+    if( this.user.username === this.oldUsername){
         this.userService.updateUser(this.user).subscribe( (user: User) => {
             this.userError = false;
             this.successFlag = true;  
           });
     } else {
-      this.userService.findUserByUsername(this.user.username).subscribe(
-        (user: User) => {
-          this.userError = true;
-          this.successFlag = false;
-        },
-        (error: any) => {
-          this.userService.updateUser(this.user).subscribe((user: User) => {
-              this.userError = false;
-              this.successFlag = true;
-            });
-        }
-      );
+      this.userService
+      .findUserByUsername(this.user.username)
+      .subscribe((data: any) => {
+          if (!data) {
+            this.userService.updateUser(this.user).subscribe((user: User) => {
+          this.userError = false;
+          this.successFlag = true;
+        });
+      } else {
+        this.userError = true;
+        this.successFlag = false;
+      }    
+        });
+      }
     }
   }
-}
