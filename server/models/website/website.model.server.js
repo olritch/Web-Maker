@@ -25,7 +25,7 @@ function updateWebsite(wid, website) {
 }
 
 function deleteWebsite(wid) {
-    return WebsiteModel.remove({ _id: wid });
+    return WebsiteModel.deleteOne({ _id: wid });
 }
 
 module.exports = WebsiteModel;

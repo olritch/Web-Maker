@@ -37,7 +37,7 @@ module.exports = function(app) {
     }
     async function deleteWebsite(req, res) {
         const websiteId = req.params["wid"];
-        const data = websiteModel.deleteWebsite(websiteId);
+        const data = await websiteModel.deleteWebsite(websiteId);
         res.json(data);
     }
 };
