@@ -10,12 +10,6 @@ app.put("/api/page", updatePage);
 // Delete Page
 app.delete("/api/page/:pid", deletePage);
 
-pages = [
-    { _id: "321", name: "Post 1", websiteId: "456", title: "Lorem" },
-    { _id: "432", name: "Post 2", websiteId: "456", title: "Lorem" },
-    { _id: "543", name: "Post 3", websiteId: "456", title: "Lorem" }      
-  ];
-
 function createPage(req, res){
     let page = req.body;
     page._id = Math.random().toString();

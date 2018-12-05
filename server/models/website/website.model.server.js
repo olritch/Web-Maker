@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const WebsiteSchema = require("./website.schema.server")
-const WebsiteModel = mongoose.model("websiteModel", WebsiteSchema);
+const WebsiteModel = mongoose.model("WebsiteModel", WebsiteSchema);
 
 WebsiteModel.createWebsiteForUser = createWebsiteForUser;
 WebsiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
