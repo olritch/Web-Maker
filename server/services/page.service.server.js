@@ -1,4 +1,6 @@
 module.exports = function(app) {
+    var pageModel = require("../models/page/page.model.server");
+
 //  Create Page
 app.post("/api/page", createPage);
 // Find All Pages For Website
@@ -10,51 +12,32 @@ app.put("/api/page", updatePage);
 // Delete Page
 app.delete("/api/page/:pid", deletePage);
 
-function createPage(req, res){
+async function createPage(req, res){
     let page = req.body;
-    page._id = Math.random().toString();
-    pages.push(page);
-    res.json(page);
+    const data = await pageModel.createPage(page);
+    res.json(data);
  }
 
-function findAllPagesForWebsite(req, res) {
-    let result = [];
-    const wid = req.params["wid"]
-    for (let i = 0; i < pages.length; i++) {
-      if (pages[i].websiteId === wid) {
-        result.push(this.pages[i]);
-      }
-    }
-    res.json(result);
+async function findAllPagesForWebsite(req, res) {
+    var pid = req.params["pid"];
+    const data = await pageModel.findAllPagesForWebsite(pid);
+    res.json(data);
 }
 
-function selectPagebyId(pid) {
-    for (let i = 0; i < pages.length; i++) {
-        if (pages[i]._id === pid) { 
-          return pages[i];
-        }
-    }
-}
-
-function findPageById(req, res) {
+async function findPageById(req, res) {
     const pid = req.params["pid"];
-    const page = selectPagebyId(pid);
-    res.json(page);
+    const data = await pageModel.findPageById(pid);
+    res.json(data);
 }
-
-function updatePage(req, res) {
+async function updatePage(req, res) {
     const page =req.body;
-    const oldPage = selectPagebyId(page._id);
-    const index = pages.indexOf(oldPage);
-    this.pages[index] = page;
-    res.json(page);
+    const pid = page._id;
+    const datab = await pageModel.updatePage(pid, page);
+    res.json(data);
 }
-
-function deletePage(req, res) {
+async function deletePage(req, res) {
     const pageId = req.params["pid"];
-    const Page = selectPageById(pageId);
-    const index = websites.indexOf(Page);
-    pages.splice(index, 1);
-    res.json(pages);
+    const data = await pageModel.deletePage(pageId);
+    res.json(data);
 }
 };
