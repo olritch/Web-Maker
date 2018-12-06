@@ -19,8 +19,8 @@ async function createPage(req, res){
  }
 
 async function findAllPagesForWebsite(req, res) {
-    var pid = req.params["pid"];
-    const data = await pageModel.findAllPagesForWebsite(pid);
+    const wid = req.params["wid"];
+    const data = await pageModel.findAllPagesForWebsite(wid);
     res.json(data);
 }
 
@@ -30,14 +30,14 @@ async function findPageById(req, res) {
     res.json(data);
 }
 async function updatePage(req, res) {
-    const page =req.body;
+    const page = req.body;
     const pid = page._id;
-    const datab = await pageModel.updatePage(pid, page);
+    const data = await pageModel.updatePage(pid, page);
     res.json(data);
 }
 async function deletePage(req, res) {
-    const pageId = req.params["pid"];
-    const data = await pageModel.deletePage(pageId);
+    const pid = req.params["pid"];
+    const data = await pageModel.deletePage(pid);
     res.json(data);
 }
 };

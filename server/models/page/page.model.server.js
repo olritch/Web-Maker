@@ -9,11 +9,11 @@ PageModel.updatePage = updatePage;
 PageModel.deletePage = deletePage;
 
 function createPage(page) {
-    return PageModel.create(page)
+    return PageModel.create(page);
 }
 
 function findAllPagesForWebsite(wid) {
-    return PageModel.find({ developerId: wid });
+    return PageModel.find({ websiteId: wid });
 }
 
 function findPageById(pid) {
@@ -21,7 +21,7 @@ function findPageById(pid) {
 }
 
 function updatePage(pid, page) {
-    return PageModel.update({ _id: pid }, page);
+    return PageModel.updateOne({ _id: pid }, page);
 }
 
 function deletePage(pid) {

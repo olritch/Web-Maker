@@ -21,7 +21,7 @@ function findWebsiteById(wid) {
 }
 
 function updateWebsite(wid, website) {
-    return WebsiteModel.update({ _id: wid }, website);
+    return WebsiteModel.updateOne({ _id: wid }, website);
 }
 
 function deleteWebsite(wid) {
