@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const PageSchema = require("./page.Schema.server");
+const PageSchema = require("./page.schema.server");
 const PageModel = mongoose.model("PageModel", PageSchema);
 
 PageModel.createPage = createPage;

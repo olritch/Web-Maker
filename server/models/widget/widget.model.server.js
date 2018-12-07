@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const WidgetSchema = require("./widget.Schema.server");
+const WidgetSchema = require("./widget.schema.server");
 const WidgetModel = mongoose.model("WidgetModel", WidgetSchema);
 
 WidgetModel.createWidget = createWidget;
@@ -15,7 +15,6 @@ function createWidget(widget) {
 function findAllWidgetsForPage(pid) {
     return WidgetModel.find({ pageId : pid });
 }
-
 function findWidgetById(wgid) {
     return WidgetModel.findById(wgid);
 }
