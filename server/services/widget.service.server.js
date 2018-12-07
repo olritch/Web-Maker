@@ -20,7 +20,6 @@ async function createWidget(req, res){
  }
 
 async function findAllWidgetsForPage(req, res) {
-    let result = [];
     const pid = req.params["pid"];
     const data = await widgetModel.findAllWidgetsForPage(pid)
     res.json(data);
@@ -35,7 +34,7 @@ async function findWidgetById(req, res) {
 async function updateWidget(req, res) {
     const widget = req.body;
     const wgid = widget._id;
-    const data = await widgetModel(wgid, widget);
+    const data = await widgetModel.updateWidget(wgid, widget);
     res.json(data);
 }
 
