@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var pageModel = require("../models/page/page.model.server");
+    const pageModel = require("../models/page/page.model.server");
 
 //  Create Page
 app.post("/api/page", createPage);
