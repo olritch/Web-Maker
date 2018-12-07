@@ -10,14 +10,14 @@ module.exports = function(app) {
         // Update User
         app.put("/api/user", updateUser);
 
-        async function createUser(req, res) {
+    async function createUser(req, res) {
             var user = req.body;
 
             const data = await userModel.createUser(user);
             res.json(data);
             }
 
-        async function findUserById(req, res) {
+    async function findUserById(req, res) {
             const userId = req.params["uid"];
             const data = await userModel.findUserById(userId);
             res.json(data);
