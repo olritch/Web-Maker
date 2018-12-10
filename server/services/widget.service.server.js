@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var widgetModel = require("../models/widget/widget.model.server");
+    const widgetModel = require("../models/widget/widget.model.server");
 
 //  Create Widget
 app.post("/api/widget", createWidget);

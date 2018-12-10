@@ -2,16 +2,16 @@ const mongoose = require("mongoose");
 
 const WidgetSchema = mongoose.Schema(
     {
-        name: String,
         pageId: { type: mongoose.Schema.Types.ObjectId, ref: "PageModel" },
-        widgetType: {type: String, enum:["HEADING", "IMAGE", "YOUTUBE"]},
+        widgetType: { type: String, enum:["HEADING", "IMAGE", "YOUTUBE"] },
+        name: String,
         text: String,
-        size: String,
-        width: String,
         url: String,
+        width: String,
+        size: Number,
         dateCreated: { type: Date, default: Date.now }
     },
     { collection: "widget" }
 );
 
-module.exports = WidgetSchema
+module.exports = WidgetSchema;

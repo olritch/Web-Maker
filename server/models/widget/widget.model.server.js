@@ -24,7 +24,7 @@ function updateWidget(wgid, widget) {
 }
 
 function deleteWidget(wgid) {
-    return WidgetModel.deleteOne({ _id: wgid });
+    return WidgetModel.deleteOne({ _id : wgid});
 }
 
 module.exports = WidgetModel;
