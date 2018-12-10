@@ -1,6 +1,39 @@
 module.exports = function(app) {
     const userModel =require("../models/user/user.model.server");
+    const passport = require('passport');
+    const LocalStrategy = require('passport-local').Strategy;
 
+    passport.serializeUser(serializeUser);
+
+function serializeUser(user, done) {
+   done(null, user);
+ }
+
+ passport.deserializeUser(deserializeUser);
+
+ function deserializeUser(user, done) {
+    userModel.findUserById(user._id).then(
+      function(user) {
+        done(null, user);
+      },
+      function(err) {
+        done(err, null);
+      }
+    );
+  }
+  passport.use(new LocalStrategy(localStrategy));
+
+  async function localStrategy(username, password, done) {
+    const data = await userModel.findUserByCredentials(username, password);
+    if (data) {
+      return done(null, data);
+    } else {
+      return done(null, false);
+    }
+  }
+ 
+        // Login
+        app.post("/api/login", passport.authenticate("local"), login);
         // Create User
         app.post("/api/user", createUser);
         // get User By Id
@@ -9,6 +42,11 @@ module.exports = function(app) {
         app.get("/api/user", findUser);
         // Update User
         app.put("/api/user", updateUser);
+
+        function login(req, res) {
+            const user = req.user;
+            res.json(user);
+        }
 
     async function createUser(req, res) {
             var user = req.body;

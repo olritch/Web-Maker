@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service.client';
 import { User } from 'src/app/models/user.model.client';
+import { SharedService}  from "../../../services/shared.service.client";
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import { User } from 'src/app/models/user.model.client';
 })
 export class ProfileComponent implements OnInit {
   constructor(
-    private activatedRoute:ActivatedRoute, 
+    private sharedService: SharedService, 
     private userService: UserService
     ) {}
 
@@ -28,15 +29,10 @@ export class ProfileComponent implements OnInit {
   users: User[];
   
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.uid = params["uid"];
-      this.userService.findUserById(this.uid).subscribe((user: User) => {
-      this.user = user;
+      this.user = this.sharedService.user;
       this.oldUsername = this.user.username;
-    });
-  });
-}
-
+    }
+    
   update(){
     if( this.user.username === this.oldUsername){
         this.userService.updateUser(this.user).subscribe( (user: User) => {

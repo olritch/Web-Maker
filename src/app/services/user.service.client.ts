@@ -1,14 +1,32 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model.client';
-import { Http, Response } from "@angular/http";
+import { Http, Response,  RequestOptions } from "@angular/http";
 import { map } from "rxjs/operators";
 import { environment } from "../../environments/environment"
 // injecting service into module
+import { SharedService } from "./shared.service.client";
+
 @Injectable()
 export class UserService {
   constructor(private http: Http) {}
 
   baseUrl = environment.baseUrl;
+  options = new RequestOptions();
+
+  login(username: string, password: string) {
+    this.options.withCredentials = true;
+     const url = this.baseUrl + "/api/login";
+    const user = {
+      username: username,
+      password: password
+    };
+    return this.http.post(url, user, this.options).pipe(
+      map((res: Response) => {
+        return res.json();
+      })
+    );
+  }
+ 
    
   createUser(user: User) {
     const url = this.baseUrl + "/api/user";
