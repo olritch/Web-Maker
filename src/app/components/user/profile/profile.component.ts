@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service.client';
 import { User } from 'src/app/models/user.model.client';
 import { SharedService}  from "../../../services/shared.service.client";
@@ -12,7 +12,8 @@ import { SharedService}  from "../../../services/shared.service.client";
 export class ProfileComponent implements OnInit {
   constructor(
     private sharedService: SharedService, 
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
     ) {}
 
   uid: string;
@@ -30,7 +31,14 @@ export class ProfileComponent implements OnInit {
   
   ngOnInit() {
       this.user = this.sharedService.user;
+      this.uid =  this.user._id;
       this.oldUsername = this.user.username;
+    }
+
+    logout() {
+      this.userService.logout().subscribe((data: any) => {
+        this.router.navigate(["login"]);
+      });
     }
     
   update(){
