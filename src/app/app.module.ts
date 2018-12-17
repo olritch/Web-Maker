@@ -25,6 +25,9 @@ import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 import { SharedService } from './services/shared.service.client';
+import { AuthGuard } from './services/auth-guard.service.client';
+import { UserListComponent } from './components/user/user-list/user-list.component';
+import { AdminGuard } from './services/admin-guard.service.client';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { SharedService } from './services/shared.service.client';
     WidgetEditComponent,
     WidgetHeadingComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    UserListComponent
   ],
   imports: [BrowserModule, Routing, FormsModule, HttpModule],
   providers: [
@@ -51,7 +55,9 @@ import { SharedService } from './services/shared.service.client';
     WebsiteService, 
     PageService, 
     WidgetService, 
-    SharedService
+    SharedService,
+    AuthGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })
